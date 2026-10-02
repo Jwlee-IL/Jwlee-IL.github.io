@@ -1,0 +1,11 @@
+<div class="scroll">
+<table class="num">
+<thead><tr><th>항목</th><th>전 → 후</th><th>한 일</th></tr></thead>
+<tbody>
+<tr><td>DICOM 스터디 로드</td><td class="v">9.2초 → 3.4초</td><td>실제로 쓰이던 디코더를 찾아 병렬화 대상을 바로잡음</td></tr>
+<tr><td>같은 스터디 다시 열기</td><td class="v">9.05초 → 0.37초</td><td>디코드한 볼륨을 디스크에 캐시</td></tr>
+<tr><td>세그멘테이션 추론 (패치당)</td><td class="v">0.71초 → 0.34초</td><td>후처리 연산을 GPU 그래프 안으로 이동</td></tr>
+</tbody>
+</table>
+</div>
+<p class="caption">사내 표본(700³ 볼륨, 약 3.4억 복셀) 기준 실측값입니다.</p>

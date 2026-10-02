@@ -1,0 +1,29 @@
+# 인적사항: 포트폴리오, 이력서 페이지, 이력서 PDF가 함께 쓴다.
+# 휴대폰 번호는 공개 사이트에 넣지 않는다(수집 봇). 연락은 이메일로 받는다.
+
+name: 이정우
+name_en: Jeongwoo Lee
+role: 의료 영상 소프트웨어 엔지니어
+photo: /assets/photo.jpg
+# icon: _includes/icon.html 의 이름, wide: 웹 인적사항에서 한 줄 전체를 쓴다
+rows:
+- label: 생년
+  icon: birth
+  value: 1991년
+- label: 경력
+  icon: career
+  value: 총 9년 (재직 중)
+- label: 이메일
+  icon: email
+  value: leonheadt@gmail.com
+- label: 주소
+  icon: address
+  value: 서울 강남구
+- label: 학력
+  icon: education
+  wide: true
+  value: 서울과학기술대학교 전기정보공학과 졸업
+- label: 병역
+  icon: military
+  wide: true
+  value: 군필 (2011.05 – 2013.02, 병장 제대)

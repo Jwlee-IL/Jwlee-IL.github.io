@@ -1,0 +1,15 @@
+{% assign p = include.p %}
+<article class="project{% if p.featured %} featured{% endif %}" id="{{ p.id }}">
+  <h3 class="p-title">{{ p.title | escape }}{% if p.featured %} <span class="feat">대표작</span>{% endif %}</h3>
+  <dl class="meta">
+    {% if p.period and p.period != '' %}<div><dt class="label">기간</dt><dd>{{ p.period }}</dd></div>{% endif %}
+    <div><dt class="label">상태</dt><dd>{% include badges.html status=p.status %}</dd></div>
+    <div class="wide"><dt class="label">역할</dt><dd>{{ p.role | escape }}</dd></div>
+    <div class="wide"><dt class="label">스택</dt><dd class="stack">{{ p.stack | escape }}</dd></div>
+    {% if p.repo %}<div class="wide"><dt class="label">코드</dt><dd><a href="{{ p.repo }}">{{ p.repo | remove: 'https://' }}</a></dd></div>{% endif %}
+  </dl>
+  <div class="body">
+    {% include blocks.html blocks=p.blocks list="did" summary="summary" note="note" scale="scale" fig="figure" %}
+    <p class="back"><a href="#{{ include.group }}">↑ {{ include.company }} 카드 목록</a></p>
+  </div>
+</article>

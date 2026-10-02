@@ -1,0 +1,7 @@
+<nav class="sitenav" aria-label="사이트">
+  <a class="home" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <a href="{{ '/' | relative_url }}"{% if page.nav == 'portfolio' %} aria-current="page"{% endif %}>포트폴리오</a>
+  <a href="{{ '/resume.html' | relative_url }}"{% if page.nav == 'resume' %} aria-current="page"{% endif %}>이력서</a>
+  <a href="{{ '/portfolio.pdf' | relative_url }}">포트폴리오 PDF</a>
+  <a href="{{ '/resume.pdf' | relative_url }}">이력서 PDF</a>
+</nav>

@@ -1,0 +1,12 @@
+{% assign F = site.data.profile %}
+<section class="profile" aria-label="인적사항">
+  <img class="photo" src="{{ F.photo | relative_url }}" alt="{{ F.name }} 증명사진" width="132" height="169">
+  <div class="profile-main">
+    <p class="label">{{ include.eyebrow }}</p>
+    <h1>{{ F.name }} <span class="en">{{ F.name_en }}</span></h1>
+    <dl class="profile-rows">
+      {% for r in F.rows %}<div{% if r.wide %} class="wide"{% endif %}><dt title="{{ r.label }}">{% if r.icon %}{% include icon.html name=r.icon %}<span class="sr-only">{{ r.label }}</span>{% else %}{{ r.label }}{% endif %}</dt><dd>{{ r.value | escape }}</dd></div>
+      {% endfor %}
+    </dl>
+  </div>
+</section>

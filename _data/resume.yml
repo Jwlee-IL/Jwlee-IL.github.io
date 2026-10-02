@@ -1,0 +1,127 @@
+# 이력서(resume.html, resume.pdf) 내용. 공개용이라 전화번호·주소·연봉·희망근무조건은 넣지 않는다.
+# 이력서는 사실 목록: 과제 한 줄에 결과 하나. 자세한 이야기는 포트폴리오(_data/portfolio.yml)에.
+
+profile:
+  name: 이정우
+  email: leonheadt@gmail.com
+  careerTotal: 총 9년
+summary:
+- 원자력 방사선 계측 장비 6년 9개월, 치과 영상 장비 2년 5개월(재직 중)의 소프트웨어 개발자입니다.
+- 영상 장비 연동부터 DICOM·PACS, 3D 시각화, 의료기기 검증 문서까지 제품이 현장에 나가는 구간을 맡아 왔고, 현 직장에서는 이를 단독으로 담당합니다.
+- 2026년부터 AI 코딩 에이전트를 개발 도구로 쓰되, 근거와 측정으로 결과를 검증하는 방식으로 일합니다.
+skills:
+- label: 영상 장비 연동
+  value: 센서 SDK(Handy, iRay, Hamamatsu, Cruxell), TWAIN, DICOM(DIMSE, DICOMweb), PACS
+- label: 데스크톱 앱
+  value: C#/.NET·WPF 설계, C++/MFC 레거시 유지보수와 재설계
+- label: 3D 영상
+  value: VTK 볼륨 렌더링, AI 세그멘테이션 모델 통합(ONNX Runtime)
+- label: 품질 · 규제
+  value: IEC 62304 검증 문서, ISO 14971 위험 관리, UI 자동화 테스트, CI
+- label: 신호 처리 · FPGA
+  value: MATLAB Simulink 기반 FPGA 신호 처리 설계(Spartan-6)
+- label: 언어
+  value: C#, C++, Python, C, Java, MATLAB, SystemVerilog
+education:
+- period: 2010.02 ~ 2017.02
+  value: 서울과학기술대학교 전기정보공학과 졸업
+careers:
+- period: 2024.05 ~ 재직 중
+  duration: 2년 5개월
+  company: ㈜제노레이
+  position: 과장 · FLEXLAB Digital Density팀
+  role: 소프트웨어 개발
+  overview: 치과 영상 장비의 영상 획득·뷰어 소프트웨어를 단독으로 맡고 있으며, C#·설계와 AI 에이전트 활용법을 사내 위키에 정리해 팀에 공유합니다.
+  projects:
+  - title: Portview 개발 담당
+    meta: 출시 제품
+    stack: ''
+    bullets:
+    - '2024.08~: 센서 3종 스레드 재설계(원인 확인 후 3~4일 내 수정, 미국/유럽 지사 해소 확인), Handy 신규 지원, TWAIN 버퍼 전송·DICOM DX 규격 정비, 릴리스 자동화'
+  - title: 치과 영상 뷰어 .NET 재작성
+    meta: 사내 QA 마무리 단계
+    stack: ''
+    bullets:
+    - 센서 4종·TWAIN·DICOM·CD 굽기 구현, 영상처리 DLL 통합(회귀 샘플 바이트 동일 유지), 자동 테스트 360여 개
+  - title: 치과 CBCT 3D 뷰어
+    meta: 개발 중
+    stack: ''
+    bullets:
+    - VTK 코어 설계, AI 세그멘테이션 모델 통합(추론 프로세스 분리), DICOM 로드 9.2초 → 3.4초
+  - title: 사내 PACS 서버 · 판독 클라이언트
+    meta: 사내 검증 진행
+    stack: ''
+    bullets:
+    - DICOM·DICOMweb 서버, 데이터 내구성(기록 확인 후 응답, 재기동 복구), 레거시 뷰어 전송 호환
+  - title: 검증 · 문서 자동화
+    meta: 사내 적용 중
+    stack: ''
+    bullets:
+    - IEC 62304 문서 Markdown 원본화와 PDF 자동 생성, 문서–코드 변경 추적 도구, UI 자동화 지침
+  - title: 음성 제어 sLLM PoC
+    meta: 기술 검토
+    stack: ''
+    bullets:
+    - Qwen3 1.7B를 사수와 서로 다른 방법으로 미세조정해 교차 검증, C# 이식, 평가 조건(시스템 프롬프트) 차이 진단
+- period: 2017.05 ~ 2024.01
+  duration: 6년 9개월
+  company: ㈜우진엔텍 (WOOJIN NTEC)
+  position: 대리 · 기술연구소
+  role: 응용 S/W 개발 및 데이터 분석
+  overview: 원자력 발전소용 방사선 계측·검증 장비의 소프트웨어와 신호 처리를 맡았습니다. G-CAM은 서강대학교 MIRE 연구실과 공동으로, 그 외 업무는 단독으로 수행했습니다.
+  projects:
+  - title: G-CAM 방사선 영상 장치
+    meta: 납품 제품
+    stack: ''
+    bullets:
+    - 감마선·광학 영상 융합 S/W, 특허 등록(KR102049518B1), 신기술인증(NET 1251), 조달청 지정, 고리 원전 해체용 납품
+  - title: 피크 검출기
+    meta: FPGA
+    stack: ''
+    bullets:
+    - Simulink 설계 → Xilinx 코드 생성 → ISE로 Spartan-6에서 실데이터 확인
+  - title: 루프 검증기 · 방사능 루프 교정 장치
+    meta: 납품 제품
+    stack: ''
+    bullets:
+    - 한빛·월성 원전 납품
+  - title: 정비 시스템 · 전자 문서 관리 시스템
+    meta: ''
+    stack: ''
+    bullets:
+    - 정비 점검 자동화, 사내 EDMS 직접 구축(장비 비용 500만원, 외부 견적 1억원 이상)
+  - title: 원전 정비 업무
+    meta: ''
+    stack: ''
+    bullets:
+    - In-Mast Sipping 손상 핵연료 검출(고리·월성·한빛)
+patents:
+- title: 감마선 영상과 시각적 광학카메라 영상을 융합하는 영상장치
+  id: KR102049518B1 (등록)
+  desc: G-CAM에 적용한 영상 융합 방식
+- title: 신기술인증
+  id: NET 1251
+  desc: G-CAM 방사선 영상 장치
+- title: 조달청 물품 등록
+  id: 물품목록번호 41115414-24022693
+  desc: G-CAM 방사선 영상 장치
+personal:
+- title: 감마 카메라 시뮬레이터
+  meta: '2026.07 · github.com/Jwlee-IL/G-CAM-Simulator'
+  stack: ''
+  bullets:
+  - G-CAM에서 익힌 원리로 감마 카메라를 몬테카를로 시뮬레이션으로 재현, MLEM 복원 추가(이상적 조건에서 2~3mm 두 선원 구분), SystemVerilog 신호 처리 회로를 C# 모델과 비트 단위로 검증
+- title: 기타 개인 프로젝트
+  meta: 데이터 분석 · 백엔드
+  stack: ''
+  bullets:
+  - 'IRT(2PL) 추정기 NumPy 직접 구현(Adam·부분 풀링, 테스트 17개), Fastify·SQLite 파일 제공 REST API'
+links:
+- label: 포트폴리오
+  url: https://jwlee-il.github.io/
+misc:
+- label: 영어 · 일본어
+  value: 일상회화 가능
+- label: 병역
+  value: '[군필] 2011.05 ~ 2013.02 병장 제대'
+site: https://jwlee-il.github.io/

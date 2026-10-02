@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'ko' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>{{ page.title }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/print.css">
+</head>
+<body>
+{{ content }}
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'base', fontFamily: '"IBM Plex Sans KR", "Malgun Gothic", sans-serif',
+    themeVariables: { fontSize: '15px', primaryColor: '#ffffff', primaryBorderColor: '#1b242d', primaryTextColor: '#1b242d',
+      lineColor: '#5a6670', clusterBkg: '#f6f8f9', clusterBorder: '#b8c2c9', edgeLabelBackground: '#ffffff' },
+    flowchart: { curve: 'basis', padding: 10 } });
+</script>
+</body>
+</html>

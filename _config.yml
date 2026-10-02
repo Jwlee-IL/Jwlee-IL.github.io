@@ -1,0 +1,16 @@
+# 사이트 설정. GitHub Pages 기본 빌드(Jekyll 3.10)와 로컬 Jekyll 4 양쪽에서 동작하도록 테마·플러그인 없이 둔다.
+title: 이정우
+description: 의료 영상 소프트웨어 엔지니어 이정우의 포트폴리오와 이력서
+lang: ko
+url: "https://jwlee-il.github.io"
+baseurl: ""
+
+markdown: kramdown
+
+exclude:
+  - README.md
+  - tools/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - node_modules/

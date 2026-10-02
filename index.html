@@ -1,0 +1,80 @@
+---
+layout: default
+title: 이정우 포트폴리오
+description: 의료 영상 소프트웨어 엔지니어 이정우의 포트폴리오. 장비 연동, DICOM/PACS, 3D 시각화, 검증 문서 자동화 프로젝트.
+nav: portfolio
+mermaid: true
+---
+{% assign P = site.data.portfolio %}
+{% include profile.html eyebrow="Portfolio" %}
+
+<p class="intro">{{ P.intro | escape }}</p>
+
+<ul class="highlights" aria-label="대표 성과">
+  {% for h in P.highlights %}<li>
+    <strong>{{ h.title | escape }}</strong>
+    <span>{{ h.text | escape }}</span>
+    <a href="#{{ h.link }}">자세히 보기 ↓</a>
+  </li>
+  {% endfor %}
+</ul>
+
+<section id="how">
+  <div class="sec-head">
+    <p class="label">{{ P.how.eyebrow }}</p>
+    <h2>{{ P.how.title }}</h2>
+  </div>
+  <div class="how">
+    <p>{{ P.how.intro | escape }}</p>
+    <ul>
+      {% for i in P.how.items %}<li><strong>{{ i.title | escape }}</strong><span>{{ i.text | escape }}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<nav class="toc" aria-label="경력 목록">
+  <p class="label">경력</p>
+  <ol>
+    {% for g in P.groups %}<li><span class="yr">{{ g.period }}</span><a href="#{{ g.id }}">{{ g.company }}</a><span class="cnt">{{ g.projects.size }}건</span></li>
+    {% endfor %}
+  </ol>
+</nav>
+
+{% for g in P.groups %}
+<section class="group" id="{{ g.id }}">
+  <div class="sec-head">
+    <p class="label">{% if g.period != '' %}{{ g.period }}{% else %}Side project{% endif %}</p>
+    <h2>{{ g.company }}{% if g.position != '' %} <span class="pos">{{ g.position }}</span>{% endif %}</h2>
+    {% if g.summary != '' %}<p class="group-summary">{{ g.summary | escape }}</p>{% endif %}
+  </div>
+  <div class="cards">
+    {% for p in g.projects %}
+    <a class="card" href="#{{ p.id }}">
+      <span class="card-top">{% if p.featured %}<span class="feat">대표작</span>{% endif %}{% include badges.html status=p.status %}<span class="card-period">{{ p.period }}</span></span>
+      <span class="card-title">{{ p.title | escape }}</span>
+      <span class="card-text">{{ p.card | escape }}</span>
+      <span class="card-hl">{{ p.highlight | escape }}</span>
+      <span class="card-more">상세 보기 ↓</span>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="details">
+    {% for p in g.projects %}{% include project-detail.html p=p group=g.id company=g.company %}{% endfor %}
+  </div>
+</section>
+{% endfor %}
+
+
+
+<section id="skills">
+  <div class="sec-head">
+    <p class="label">Skills</p>
+    <h2>기술</h2>
+  </div>
+  <div class="skills">
+    {% for g in P.skills %}<div><p class="label">{{ g.label }}</p><div class="chips">{% for s in g.items %}<span>{{ s | escape }}</span>{% endfor %}</div></div>
+    {% endfor %}
+  </div>
+</section>
+

@@ -1,0 +1,13 @@
+{% comment %}프로젝트 본문 블록. include.list = 불릿 목록에 붙일 class{% endcomment %}
+{% for b in include.blocks %}
+{% if b.label and b.bullets %}<div class="lbl"><p class="lbl-name">{{ b.label }}</p><ul class="{{ include.list }}">{% for x in b.bullets %}<li>{{ x | escape }}</li>{% endfor %}</ul></div>
+{% elsif b.label %}<div class="lbl"><p class="lbl-name">{{ b.label }}</p><p class="lbl-text">{{ b.text | escape }}</p></div>
+{% elsif b.summary %}<p class="{{ include.summary }}">{{ b.summary | escape }}</p>
+{% elsif b.note %}<p class="{{ include.note }}">{{ b.note | escape }}</p>
+{% elsif b.scale %}<p class="{{ include.scale }}">{{ b.scale | escape }}</p>
+{% elsif b.bullets %}<ul class="{{ include.list }}">{% for x in b.bullets %}<li>{{ x | escape }}</li>{% endfor %}</ul>
+{% elsif b.figure %}<div class="{{ include.fig }}">
+{% include figures/{{ b.figure }} %}
+</div>
+{% endif %}
+{% endfor %}

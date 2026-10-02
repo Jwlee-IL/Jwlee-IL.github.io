@@ -1,0 +1,7 @@
+{
+  "name": "resume-pdf",
+  "private": true,
+  "description": "_data/resume.yml 에서 resume.pdf 를 만드는 도구 (사이트 빌드에서 제외됨)",
+  "scripts": { "build": "node build.js" },
+  "dependencies": { "docx": "^9.5.1", "js-yaml": "^4.1.0" }
+}

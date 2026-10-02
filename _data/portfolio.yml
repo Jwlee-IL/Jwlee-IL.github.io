@@ -1,0 +1,248 @@
+# 포트폴리오(index.html) 내용. 문구는 이 파일만 고친다.
+# groups: 직장별 묶음 → projects: 카드(card, highlight)와 아래에 펼쳐지는 상세 항목(blocks).
+# 인적사항은 _data/profile.yml 에 있다.
+# blocks 종류: summary, bullets, note, scale, figure(_includes/figures/ 파일 이름), label+text, label+bullets.
+# repo: 공개 코드 저장소 주소(있을 때만). featured: true 인 과제가 대표작이다. PDF에서는 대표작 → 기타 과제 순으로 나온다.
+
+intro: 원자력 발전소용 방사선 계측 장비(6년 9개월)를 거쳐, 지금은 치과 영상 장비의 영상 획득·뷰어 소프트웨어를 만드는 9년 차 개발자입니다.
+highlights:
+- title: 현장 센서 연결 결함의 원인 해결
+  text: Portview의 센서 연결 멈춤·비정상 종료 결함을 현장 로그로 추적해 3개 센서의 스레드 구조를 재설계했고, 미국/유럽 지사에서 해소를 확인받았습니다.
+  link: legacy
+- title: 원전 납품 장비와 등록 특허
+  text: 방사선 영상 장치 G-CAM으로 특허 등록과 신기술인증(NET 1251)을 받아 고리 원전에 납품했고, 검증·교정 장비는 한빛·월성 원전에 납품했습니다.
+  link: gcam-device
+- title: 치과 영상 뷰어 .NET 재작성
+  text: 센서 4종, TWAIN, DICOM을 단독으로 구현하고 자동 테스트 360여 개를 갖춰, 현재 사내 QA 마무리 단계에 있습니다.
+  link: rewrite
+how:
+  eyebrow: Working style
+  title: 일하는 방식
+  intro: 무엇을 만들지 정하고 결과가 맞는지 확인하는 일은 제 책임으로 둡니다. 2026년부터는 Claude Code, Codex 같은 AI 코딩 에이전트를 개발 도구로 쓰며, 커밋에도 공동 작성자로 남깁니다.
+  items:
+  - title: 잣대부터 세우기
+    text: 손대기 전에 측정 기준을 만들고, 고친 뒤에는 코드를 되돌려 테스트가 실제로 결함을 잡는지 확인합니다.
+  - title: 근거를 요구하고, 판단은 직접
+    text: 3D 뷰어에서는 에이전트가 기준값마다 규격·문헌·실측 등 어떤 근거인지 밝히고, 근거보다 앞선 주장은 좁히도록 반복해 교정했습니다. 그 과정에서 즉시 식립 기준으로 널리 인용되던 '뿌리 끝 아래 뼈 높이 3mm'가 권고가 아니라 문헌고찰의 선정 기준이었음을 잡아냈습니다.
+  - title: 정리해서 나누기
+    text: C#·설계와 AI 에이전트 활용법(근거를 요구하는 지시문 작성, 컨텍스트와 토큰 관리)을 사내 위키에 정리해 팀에 공유합니다.
+groups:
+- id: genoray
+  company: ㈜제노레이
+  position: 소프트웨어 개발 과장 (FLEXLAB Digital Density팀)
+  period: 2024.05 – 현재
+  summary: ''
+  projects:
+  - id: legacy
+    title: Portview 개발 담당
+    period: 2024.08 – 현재
+    status:
+    - text: 출시 제품
+      kind: ok
+    role: 제품 개발 전반 — 장비 연동, 결함 수정, 빌드·릴리스, 검증 (단독)
+    stack: C++17 · MFC · DCMTK · TWAIN · 센서 벤더 SDK · GitHub Actions
+    blocks:
+    - label: 과제
+      text: 치과 영상 획득·뷰어 출시 제품 Portview(C++/MFC)를 2.2.5.16 버전부터 단독으로 맡아 2.2.5.22까지 릴리스했고, 미국/유럽 지사 대응도 하고 있습니다.
+    - label: 문제
+      text: 대표 사례로, 현장에서 센서 연결이 멈추거나 프로그램이 비정상 종료되는 결함이 반복해서 보고됐습니다.
+    - label: 해결
+      text: 현장 로그를 분석해 원인이 스레드 구조에 있다는 것을 찾았습니다. 센서 SDK의 알림(콜백)이 화면을 직접 건드리던 구조를, 화면 스레드만 상태를 바꾸고 SDK는 메시지로 알리기만 하는 구조로 바꿔 3개 센서(Handy, iRay, Hamamatsu)에 적용했습니다.
+    - label: 결과
+      text: 원인 확인 후 유닛 테스트로 결함 조건을 재현하며 3~4일 안에 고쳤고, 미국/유럽 지사에서 해소를 확인받았습니다.
+    - label: 그 외
+      bullets:
+      - '센서: Handy(HDR500/600) 신규 연동과 iRay 오프라인 보정, Hamamatsu·Cruxell(GenX-CR) 호환 등 4개 제조사 센서에 대응했습니다.'
+      - 'TWAIN: 앱이 TWAIN 데이터 소스로 영상을 넘기는 방식을 JPEG 파일 경유에서 메모리 버퍼 직접 전달로 바꾸고(구버전 데이터 소스는 파일 방식 유지), 테스트용 호스트로 전송 순서·해상도·크기 결함과 멈춤을 재현해 고쳤습니다.'
+      - '영상·DICOM: 저장 과정에서 화소 간격(DPI·Pixel Spacing) 정보가 사라지던 원인을 추적해 고치고, RGB로 나가던 DICOM 출력을 DX 규격의 흑백으로 바로잡았습니다(파일 크기 1/3, 화소값 동일). 전송 판정은 실패를 재현하는 테스트용 PACS로 검증했습니다.'
+      - '품질: 스레드·소요 시간을 기록하는 공용 로그를 전 모듈에 적용하고, 결함 대장 자동 집계, GitHub Actions 릴리스, 시험 성적서 부록 자동 생성을 갖췄습니다.'
+    card: 출시 제품 Portview를 2024년 8월부터 단독으로 맡아 장비 연동, 결함 수정, 빌드·릴리스, 검증까지 담당
+    highlight: 센서 3종 스레드 구조 재설계
+    featured: true
+  - id: rewrite
+    title: 치과 영상 뷰어 .NET 재작성
+    period: 2026.01 – 현재
+    status:
+    - text: 사내 QA 마무리 단계
+      kind: warn
+    role: 설계·개발 (단독)
+    stack: C# · .NET 8/9 · WPF · MVVM · fo-dicom · NTwain · C++ · xUnit · FlaUI · NSIS
+    blocks:
+    - label: 과제
+      text: C++/MFC로 된 Portview를 .NET WPF 기반의 차세대 제품으로 새로 설계해 만드는 일을 단독으로 맡았습니다.
+    - label: 한 일
+      bullets:
+      - 센서 4종과 구강 카메라를 연동하고, 외부 영상 프로그램이 이 앱에서 영상을 받아 가는 창구(TWAIN 데이터 소스)를 C++로 새로 작성했습니다.
+      - DICOM 조회·전송·수신·인쇄, 장비 업로드를 받는 FTP 서버, CD 굽기(IMAPI2)를 구현했습니다.
+      - 기존 영상처리 DLL 두 개를 MFC 의존이 없는 DLL 하나로 합쳤습니다.
+      - UI 라이브러리 없이 영상 주석 캔버스를 직접 구현했습니다(펜·화살표·텍스트·각도 측정, 확대·이동·회전, 각도·크기 조절 Adorner, 실행 취소).
+    - label: 검증
+      text: 합친 DLL은 회귀 샘플 11개로 리팩터링 전후 출력이 바이트 단위로 같은지 확인하며 다듬었고, UI 자동화를 포함한 자동 테스트 360여 개와 빌드·테스트 CI 게이트를 갖췄습니다.
+    card: C++/MFC 영상 획득·뷰어를 .NET WPF 기반으로 새로 설계
+    highlight: 자동 테스트 360여 개
+    featured: true
+  - id: cbct
+    title: 치과 CBCT 3D 뷰어
+    period: 2026.04 – 현재
+    status:
+    - text: 개발 중
+      kind: info
+    role: 설계·개발 (단독)
+    stack: Python · VTK · trame · ONNX Runtime · pydicom · pynetdicom · FastAPI
+    blocks:
+    - label: 과제
+      text: CBCT 영상을 3D로 보고, 임플란트 계획을 세우고, 판독 소견서를 DICOM 문서로 PACS에 보내는 흐름을 하나로 묶는 프로젝트입니다.
+    - label: 한 일
+      bullets:
+      - VTK 기반 코어 하나에 웹, REST API, 데스크톱 화면을 갈아 끼울 수 있도록 계층을 나눴습니다.
+      - 사내 AI팀의 세그멘테이션 모델을 통합하면서, 3D 렌더링과 AI 추론이 한 프로세스에서 GPU 자원을 두고 부딪히지 않도록 추론을 별도 프로세스로 분리했습니다. GPU 종류에 따라 실행 경로(CUDA·DirectML·CPU)는 자동으로 고릅니다.
+      - 곡면 파노라마, 하악관(신경관) 검출, 임플란트 식립 제안, 판독 소견서의 DICOM 전송을 구현했습니다.
+    - label: 검증
+      text: 기준값 100여 개마다 근거 등급(규격·문헌·실측 등)을 달고, 코드 값과 근거 문서가 어긋나면 테스트가 실패하게 했습니다.
+    - figure: cbct-1.html
+    - figure: cbct-2.html
+    card: CBCT를 3D로 보고, 임플란트를 계획하고, 판독 소견서를 PACS로 보내는 흐름을 하나로 묶은 뷰어
+    highlight: DICOM 로드 9.2초 → 3.4초
+    featured: true
+  - id: pacs
+    title: 사내 PACS 서버와 판독 클라이언트
+    period: 2026.04 – 2026.06
+    status:
+    - text: 사내 검증 진행
+      kind: warn
+    role: 설계·개발 (단독)
+    stack: C# · .NET 8 · ASP.NET Core · fo-dicom · PostgreSQL · EF Core · WPF · WiX
+    blocks:
+    - summary: 촬영 장비에서 영상을 받아 저장하고, 판독 클라이언트와 3D 뷰어에 제공하는 사내 PACS를 만들었습니다. 의료 영상 표준 통신(DICOM)과 웹 방식(DICOMweb)을 한 서버에 구현했고, 디스크 기록을 확인한 뒤에만 수신을 응답하고 재기동 때 누락분을 복구해 영상이 사라지지 않게 했습니다. 오래된 사내 뷰어와의 전송 호환 문제는 두 서버의 통신 패킷을 비교해 풀었습니다.
+    card: 촬영 장비 영상을 받아 저장하고 판독 클라이언트에 제공하는 사내 PACS
+    highlight: 레거시 뷰어 C-MOVE 호환
+  - id: docs
+    title: 검증·문서 자동화
+    period: 2026.03 – 현재
+    status:
+    - text: 사내 적용 중
+      kind: ok
+    role: 문서 이관, 자동화 도구·지침 작성 (단독)
+    stack: Markdown · MkDocs · Python · Playwright · FlaUI · PowerShell · GitHub Actions
+    card: IEC 62304 검증 문서를 Markdown 원본으로 관리하고, 문서·UI 자동화 도구와 지침을 만듦
+    highlight: 문서–코드 변경 추적 도구
+    blocks:
+    - summary: 위험 관리(FMEA)와 사이버보안 요구사항을 포함한 IEC 62304 기반 검증 문서를 Markdown 원본으로 옮기고 결재란까지 갖춘 PDF를 자동 생성하게 했습니다. 코드가 바뀌면 다시 볼 문서를 알려 주는 도구를 만들었고, 세 제품의 UI 자동화 경험을 AI 에이전트가 따를 수 있는 지침으로 정리했습니다.
+  - id: sllm
+    title: 영상 장비 음성 제어 sLLM PoC
+    period: 2026.05 – 2026.09
+    status:
+    - text: 기술 검토
+      kind: info
+    role: 모델 미세조정·평가, C# 이식 (사수와 교차 검증)
+    stack: Qwen3 · QLoRA · Unsloth · TRL · llama.cpp · LLamaSharp · Whisper.net
+    blocks:
+    - summary: 음성 명령을 장비 제어 명령으로 바꾸는 온디바이스 소형 LLM을 검토했습니다. Qwen3 1.7B를 사수와 서로 다른 방법으로 미세조정해 교차 검증하고 C#으로 옮겼으며, 평가 결과가 환경마다 갈리는 원인이 모델이 아니라 측정 조건(시스템 프롬프트 유무)에 있다는 것을 재현 실험으로 밝혔습니다.
+    card: 음성 명령을 장비 제어 호출로 바꾸는 온디바이스 소형 LLM 검토
+    highlight: 평가 조건 차이 진단
+- id: woojin
+  company: ㈜우진엔텍
+  position: 기술연구소 대리
+  period: 2017.05 – 2024.01
+  summary: 원자력 발전소용 방사선 계측·검증 장비를 개발해 고리·한빛·월성 원전에 납품했습니다. 방사선 영상 장치 G-CAM은 신기술인증(NET 1251)을 받았습니다.
+  projects:
+  - id: gcam-device
+    featured: true
+    print_page_start: true   # 인쇄본에서 이 과제를 새 쪽에서 시작(그림이 본문과 떨어지지 않게)
+    title: G-CAM 방사선 영상 장치
+    period: 2017.05 – 2024.01
+    status:
+    - text: 납품 제품
+      kind: ok
+    role: 영상 융합 S/W, 신호 처리 설계 (서강대학교 MIRE 연구실과 공동)
+    stack: C# (WPF) · MariaDB · MATLAB · Simulink · Xilinx ISE (Spartan-6)
+    card: 눈에 보이지 않는 방사선이 어디서 나오는지 카메라 영상 위에 겹쳐 보여 주는 장치
+    highlight: 등록 특허 · 신기술인증 NET 1251 · 원전 납품
+    blocks:
+    - label: 과제
+      text: 눈에 보이지 않는 방사선이 어디서 나오는지를 카메라 영상 위에 겹쳐 보여 주는 장치입니다. 감마선은 렌즈로 굽힐 수 없어서, 정해진 패턴으로 구멍을 뚫은 텅스텐 마스크(부호화 구경)의 그림자를 검출기로 받고, 계산으로 그 패턴을 풀어 방사선원의 위치를 찾습니다. 복원 알고리즘은 MIRE 연구실이, 영상 융합 소프트웨어와 FPGA 신호 처리는 제가 맡았습니다.
+    - label: 한 일
+      bullets:
+      - 감마선 영상과 광학 카메라 영상을 융합해 보여 주는 소프트웨어(C#, WPF)를 개발했습니다.
+      - 14bit ADC 신호의 피크 검출기를 MATLAB Simulink로 설계·시뮬레이션하고, Xilinx 도구로 코드를 생성해 ISE에서 Spartan-6 FPGA에 올려 실데이터로 확인했습니다.
+      - 좌표 연산과 가우시안 모델을 이용한 데이터 분석을 MATLAB으로 수행했습니다.
+    - label: 결과
+      text: 영상 융합 방식 특허(KR102049518B1)에 발명자로 참여해 등록했고, 신기술인증(NET 1251)과 조달청 지정 납품 제품 선정(물품목록번호 41115414-24022693)을 거쳐 고리 원전 해체용 장비로 납품했습니다.
+    - figure: gcam-1.html
+  - id: nuclear
+    title: 원전 검증·교정 장비와 정비 업무
+    period: 2017.05 – 2024.01
+    status:
+    - text: 납품 제품
+      kind: ok
+    role: S/W 개발 (단독), 정비 업무
+    stack: C# (WPF) · MariaDB · Java (Android)
+    card: 원전 제어 계통 검증기와 방사능 루프 교정 장치, 정비 자동화, 손상 핵연료 검출
+    highlight: 한빛·월성 원전 납품
+    blocks:
+    - summary: 원전 제어 계통 루프 검증기와 격리계통 방사능 루프 교정 장치를 개발해 한빛·월성 원전에 납품했습니다. 전원 공급기 정비 시스템으로 점검을 자동화했고, 외부 견적(1억원 이상) 대신 사내 전자 문서 관리 시스템을 직접 구축해 장비 비용 500만원으로 도입했습니다. In-Mast Sipping 기법으로 고리·월성·한빛 원전의 손상 핵연료 검출 정비 업무도 함께 수행했습니다.
+- id: personal
+  company: 개인 프로젝트
+  position: ''
+  period: ''
+  summary: ''
+  projects:
+  - id: gcam
+    title: 감마 카메라 시뮬레이터
+    period: '2026.07'
+    status:
+    - text: 시뮬레이션 · RTL
+      kind: info
+    role: 설계·개발 (개인)
+    stack: C# · .NET 9 · WPF · ScottPlot · Python · SystemVerilog · cocotb · Yosys · nextpnr
+    repo: https://github.com/Jwlee-IL/G-CAM-Simulator
+    blocks:
+    - summary: G-CAM을 만들며 연구실과 함께 익힌 원리를 바탕으로, 감마 카메라 전체를 몬테카를로 시뮬레이션으로 다시 구현했습니다. 겹친 그림자를 푸는 복원 방식으로 MLEM을 추가해 이상적인 고계수 조건에서 2~3mm 간격의 두 선원을 구분했고, 신호 처리 회로를 SystemVerilog로 직접 작성해 C# 모델과 비트 단위로 같은 결과를 내는지 검증했습니다. 파이프라인으로 나눠 동작 주파수(Fmax)도 59MHz에서 119MHz로 높였습니다(ECP5, nextpnr 타이밍 분석 기준).
+    card: G-CAM에서 익힌 원리로 감마 카메라를 몬테카를로 시뮬레이션으로 재현
+    highlight: MLEM 복원 · 이상적 조건 2~3mm 구분
+  - id: side
+    title: 기타 개인 프로젝트
+    period: ''
+    status:
+    - text: 데이터 분석 · 백엔드
+      kind: info
+    role: 설계·개발 (개인)
+    stack: Python · NumPy · pandas · Node.js · Fastify · SQLite · PowerShell
+    blocks:
+    - bullets:
+      - '통계 모델 직접 구현: IRT(2PL) 추정기를 NumPy만으로 구현(해석적 기울기·Adam, 그룹별 부분 풀링)해 공개 기록으로 난이도·실력을 추정하고 등급표에 보정했습니다. 모수 복원 등 검증 테스트 17개.'
+      - '파일 제공 REST API: Fastify·SQLite로 세션, 권한별 다운로드 한도, 속도 제한, 감사 로그, 마이그레이션·배포 스모크 테스트'
+    summary_table: false
+    card: NumPy로 직접 구현한 IRT 난이도 추정 모델과 파일 제공 REST API
+    highlight: IRT 추정기 직접 구현
+skills:
+- label: 의료 영상
+  items:
+  - DICOM DIMSE
+  - DICOMweb
+  - PACS
+  - TWAIN
+  - 센서 SDK 연동
+  - VTK 볼륨 렌더링
+- label: 언어·플랫폼
+  items:
+  - C++17 / MFC
+  - C# / .NET 8·9
+  - WPF / MVVM
+  - ASP.NET Core
+  - Python
+  - PostgreSQL
+- label: 품질·규제
+  items:
+  - IEC 62304 검증 문서
+  - ISO 14971 위험 관리
+  - FDA 사이버보안 문서
+  - xUnit · pytest
+  - UI 자동화 (UIA3 · Win32 · Playwright)
+  - GitHub Actions
+- label: ML
+  items:
+  - ONNX Runtime 추론 통합
+  - QLoRA 미세조정
+  - llama.cpp / GGUF
+  - 평가 설계

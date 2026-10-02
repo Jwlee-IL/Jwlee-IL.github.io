@@ -1,0 +1,62 @@
+---
+layout: default
+title: 이정우 이력서
+description: 소프트웨어 개발자 이정우의 이력서. 방사선 계측 장비와 치과 영상 장비 소프트웨어 개발 9년.
+nav: resume
+---
+{% assign R = site.data.resume %}
+{% include profile.html eyebrow="Resume" %}
+<div class="intro">
+  {% for s in R.summary %}<p>{{ s | escape }}</p>
+  {% endfor %}
+  <p><a href="{{ '/' | relative_url }}">프로젝트 자세히 보기 →</a></p>
+</div>
+
+<section id="skills">
+  <div class="sec-head"><p class="label">Skills</p><h2>핵심 기술</h2></div>
+  <dl class="kv">{% for s in R.skills %}<div style="display:contents"><dt>{{ s.label }}</dt><dd>{{ s.value | escape }}</dd></div>{% endfor %}</dl>
+</section>
+
+
+<section id="career">
+  <div class="sec-head"><p class="label">Experience</p><h2>경력</h2></div>
+  {% for c in R.careers %}
+  <div class="company">
+    <h3>{{ c.company | escape }}</h3>
+    <p class="pos">{{ c.position | escape }} · {{ c.period }} ({{ c.duration }}) · {{ c.role | escape }}</p>
+    {% if c.overview %}<p>{{ c.overview | escape }}</p>{% endif %}
+    {% for p in c.projects %}
+    <div class="job">
+      <h4>{{ p.title | escape }}{% if p.meta != '' %}<span>{{ p.meta | escape }}</span>{% endif %}</h4>
+      {% if p.stack != '' %}<p class="scale">{{ p.stack | escape }}</p>{% endif %}
+      <ul class="did">{% for b in p.bullets %}<li>{{ b | escape }}</li>{% endfor %}</ul>
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</section>
+
+<section id="patent">
+  <div class="sec-head"><p class="label">Patent</p><h2>특허 · 인증</h2></div>
+  {% for p in R.patents %}
+  <div class="job"><h4>{{ p.title | escape }}<span>{{ p.id }}</span></h4>{% if p.desc %}<p>{{ p.desc | escape }}</p>{% endif %}</div>
+  {% endfor %}
+</section>
+
+<section id="personal">
+  <div class="sec-head"><p class="label">Side project</p><h2>개인 프로젝트</h2></div>
+  {% for p in R.personal %}
+  <div class="job">
+    <h4>{{ p.title | escape }}{% if p.meta != '' %}<span>{{ p.meta | escape }}</span>{% endif %}</h4>
+    {% if p.stack != '' %}<p class="scale">{{ p.stack | escape }}</p>{% endif %}
+    <ul class="did">{% for b in p.bullets %}<li>{{ b | escape }}</li>{% endfor %}</ul>
+  </div>
+  {% endfor %}
+</section>
+
+<section id="misc">
+  <div class="sec-head"><p class="label">Language</p><h2>어학</h2></div>
+  <dl class="kv">{% for m in R.misc %}{% if m.label == '병역' %}{% continue %}{% endif %}<div style="display:contents"><dt>{{ m.label }}</dt><dd>{{ m.value | escape }}</dd></div>{% endfor %}</dl>
+</section>
+
+

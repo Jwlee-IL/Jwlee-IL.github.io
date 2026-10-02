@@ -1,0 +1,83 @@
+---
+layout: print
+title: 이정우 포트폴리오
+---
+{% assign P = site.data.portfolio %}{% assign F = site.data.profile %}
+<main class="doc">
+
+<section class="sheet-1">
+  <header class="id">
+    <img class="photo" src="{{ F.photo | remove_first: '/' }}" alt="{{ F.name }} 증명사진">
+    <div class="id-main">
+      <p class="kicker">Portfolio</p>
+      <h1>{{ F.name }} <span class="en">{{ F.name_en }}</span></h1>
+      <table class="facts">
+        {% assign rows = F.rows %}{% assign half = rows.size | plus: 1 | divided_by: 2 %}
+        {% for i in (1..half) %}{% assign a = forloop.index0 %}{% assign b = a | plus: half %}
+        <tr><th>{{ rows[a].label }}</th><td>{{ rows[a].value | escape }}</td>{% if rows[b] %}<th>{{ rows[b].label }}</th><td>{{ rows[b].value | escape }}</td>{% else %}<th></th><td></td>{% endif %}</tr>
+        {% endfor %}
+      </table>
+    </div>
+  </header>
+
+  <p class="lead">{{ P.intro | escape }}</p>
+
+  <h2 class="h2">대표 성과</h2>
+  <ol class="wins">
+    {% for h in P.highlights %}<li><strong>{{ h.title | escape }}</strong><span>{{ h.text | escape }}</span></li>
+    {% endfor %}
+  </ol>
+
+  <h2 class="h2">과제 요약</h2>
+  <table class="summary">
+    <colgroup><col class="c-period"><col class="c-title"><col class="c-status"><col class="c-key"></colgroup>
+    <thead><tr><th>기간</th><th>과제</th><th>상태</th><th>핵심</th></tr></thead>
+    <tbody>
+    {% for g in P.groups %}
+      <tr class="grp"><td colspan="4">{{ g.company }}{% if g.position != '' %} · {{ g.position }}{% endif %}</td></tr>
+      {% for p in g.projects %}{% if p.summary_table == false %}{% continue %}{% endif %}
+      <tr><td class="num">{{ p.period }}</td><td>{{ p.title | escape }}</td><td>{% for s in p.status %}{{ s.text }}{% unless forloop.last %}<br>{% endunless %}{% endfor %}</td><td>{{ p.highlight | escape }}</td></tr>
+      {% endfor %}
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h2 class="h2">일하는 방식</h2>
+  <p class="how">{{ P.how.intro | escape }}</p>
+  <ul class="how-items">
+    {% for i in P.how.items %}<li><strong>{{ i.title | escape }}</strong> {{ i.text | escape }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% for pass in (1..2) %}
+<section class="group{% if pass == 1 %} first{% endif %}">
+  <div class="g-head">
+    <h2>{% if pass == 1 %}대표작{% else %}기타 과제{% endif %}</h2>
+  </div>
+  {% for g in P.groups %}{% for p in g.projects %}
+  {% if pass == 1 and p.featured != true %}{% continue %}{% endif %}
+  {% if pass == 2 and p.featured == true %}{% continue %}{% endif %}
+  <article class="proj{% if pass == 2 %} brief{% endif %}{% if pass == 1 and p.print_page_start %} page-start{% endif %}">
+    <div class="p-head">
+      <h3>{{ p.title | escape }}</h3>
+      <p class="p-period">{{ p.period }}</p>
+    </div>
+    <p class="p-meta"><span class="p-org">{{ g.company }}</span>{% for s in p.status %}<span class="tag {{ s.kind }}">{{ s.text }}</span>{% endfor %}<span class="p-role">{{ p.role | escape }}</span></p>
+    <p class="p-stack">{{ p.stack | escape }}</p>
+    {% if p.repo %}<p class="p-stack">코드 · <a href="{{ p.repo }}">{{ p.repo | remove: 'https://' }}</a></p>{% endif %}
+    {% include blocks.html blocks=p.blocks list="p-list" summary="p-summary" note="p-note" scale="p-scale" fig="fig" %}
+  </article>
+  {% endfor %}{% endfor %}
+</section>
+{% endfor %}
+
+<section class="skills">
+  <h2 class="h2">기술</h2>
+  <table class="skill-table">
+    {% for s in P.skills %}<tr><th>{{ s.label }}</th><td>{{ s.items | join: ' · ' | escape }}</td></tr>
+    {% endfor %}
+  </table>
+</section>
+
+</main>

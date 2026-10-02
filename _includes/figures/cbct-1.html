@@ -1,0 +1,20 @@
+<div class="scroll">
+<pre class="mermaid">
+flowchart LR
+  subgraph D["화면 계층"]
+    W["웹 UI · trame"]
+    R["REST API"]
+    P["데스크톱 · WPF"]
+  end
+  C["뷰어 코어<br/>VTK 래퍼 · 기능 모듈"]
+  V["VTK 렌더링<br/>볼륨 · 곡면 · 단면"]
+  S["세그멘테이션 추론 프로세스<br/>ONNX Runtime"]
+  X["PACS<br/>DICOM 전송"]
+  W --&gt; C
+  R --&gt; C
+  P --&gt; C
+  C --&gt; V
+  C -. "진행률·결과 메시지" .-&gt; S
+  C --&gt; X
+</pre>
+</div>
